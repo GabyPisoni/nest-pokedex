@@ -62,7 +62,6 @@ export class PokemonService {
   async update(term: string, updatePokemonDto: UpdatePokemonDto) {
     //return `This action updates a #${term} pokemon`;
     const pokemonResult = await this.findOne(term);
-    console.log("Esto es pokemon result", pokemonResult)
     if (updatePokemonDto.name) {
       updatePokemonDto.name = updatePokemonDto.name.toLowerCase();
     }
@@ -77,9 +76,18 @@ export class PokemonService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pokemon`;
+  async remove(id: string) {
+  // const pokemon =  await this.findOne(id);
+  // await  pokemon.deleteOne();
+  //const result = await this.pokemonModel.findByIdAndDelete(id)
+  //Este ejemplo muestra a las claras como se puede con un metodo ser mas eficiente en los llamados que hacemos a a BD
+  const {deletedCount} = await  this.pokemonModel.deleteOne({_id:id}) 
+  if(deletedCount === 0){
+    throw new BadRequestException(`El ${id} no existe en la base de datos`)
   }
+  
+  return;
+}
   handleExeption(error: any) {
     if (error.code === 11000) {
       throw new BadRequestException(`El pokemon existe en la db ${JSON.stringify(error.keyValue)}`)

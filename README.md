@@ -3,6 +3,9 @@
 </p>
 # Ejecutar  en desa   
 
+# Tener MongoDb Instalado de manera local !!! Junto con Docker en caso de problema buscar alternativas con extensiones en VisualStudioCode de Docker que sirven para correr
+
+
 1. Clonnar el repositorio
 2. Ejecutar
 
