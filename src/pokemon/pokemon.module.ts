@@ -11,5 +11,6 @@ import { Pokemon, PokemonSchema } from './entities/pokemon.entity';
     //Este name sale del documento que extiende
     name: Pokemon.name, 
     schema: PokemonSchema }])],
+    exports: [MongooseModule]
 })
 export class PokemonModule {}
