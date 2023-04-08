@@ -27,8 +27,9 @@ export class PokemonService {
     }
   }
 
-  findAll() {
-    return `This action returns all pokemon`;
+  findAll(queryParams) {
+    const {limit = 10,offset=0 } = queryParams;
+    return this.pokemonModel.find().limit(limit).skip(offset).sort({no:1}).select("-__v");
   }
 
   async findOne(term: string) {
